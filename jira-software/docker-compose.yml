@@ -11,7 +11,7 @@ services:
     container_name: jira
     restart: always
     build: ./jira-software
-    image: jira/jira-software:7.12.0
+    image: jira/jira-software:8.1.0
     ports:
       - '8080:8080'
     volumes:

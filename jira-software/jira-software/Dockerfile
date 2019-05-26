@@ -1,4 +1,4 @@
-FROM cptactionhank/atlassian-jira-software:7.12.0
+FROM cptactionhank/atlassian-jira-software:8.1.0
 
 #ARG AGENT_PKG=https://github.com/pengzhile/atlassian-agent/releases/download/v1.2.2/atlassian-agent-v1.2.2.tar.gz
 ARG AGENT_PKG=atlassian-agent-v1.2.2.tar.gz
