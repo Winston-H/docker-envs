@@ -1,0 +1,37 @@
+#
+# modified from following src:
+# https://gist.github.com/lvaylet/cdef4c78d2e61634d80238acd5f321be#file-atlassian-jira-docker-compose-yml
+#
+version: '3'
+
+services:
+  jira:
+    depends_on:
+      - mysql
+    container_name: jira
+    restart: always
+    build: ./jira-software
+    image: jira/jira-software:7.12.0
+    ports:
+      - '8080:8080'
+    volumes:
+      - jira-data:/var/atlassian/jira  # JIRA_HOME
+
+  mysql:
+    container_name: mysql  # https://store.docker.com/images/mysql
+    restart: always
+    build: ./mysql
+    image: jira/mysql:5.7
+    environment:
+      # Use a .env file to store credentials securely?
+      # https://docs.docker.com/compose/environment-variables/
+      - MYSQL_ROOT_PASSWORD=hnkNr3sThMVzcrsugqTq4VCbzM7awwRL
+      - MYSQL_DATABASE=jiradb          # this database will be created on image startup
+      - MYSQL_USER=jira                # this user will be granted superuser permissions on MYSQL_DATABASE
+      - MYSQL_PASSWORD=MYxKYsfidur4HJNyd7zzNkqEFcUNtyMH
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  jira-data:
+  mysql-data:
