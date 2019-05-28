@@ -12,13 +12,17 @@ services:
     restart: always
     build: ./jira-software
     image: jira/jira-software:8.1.0
-    ports:
-      - '8080:8080'
+    environment:
+      - CATALINA_OPTS=-Xms768m -Xmx1024m
+      - X_PROXY_NAME=10.10.1.35
+      - X_PROXY_PORT=8080
+      - X_PROXY_SCHEME=http
+      - X_PATH=/jira
     volumes:
       - jira-data:/var/atlassian/jira  # JIRA_HOME
 
   mysql:
-    container_name: mysql  # https://store.docker.com/images/mysql
+    container_name: jira_mysql  # https://store.docker.com/images/mysql
     restart: always
     build: ./mysql
     image: jira/mysql:5.7
@@ -31,6 +35,33 @@ services:
       - MYSQL_PASSWORD=MYxKYsfidur4HJNyd7zzNkqEFcUNtyMH
     volumes:
       - mysql-data:/var/lib/mysql
+
+  nginx:
+    depends_on:
+      - jira
+    container_name: jira_nginx
+    restart: always
+    image: nginx:1.15-alpine
+    ports:
+      - "8080:80"
+    environment:
+      - X_PROXY_NAME=10.10.1.35
+      - X_PROXY_PORT=8080
+      - X_PROXY_SCHEME=http
+      - X_PATH=/jira
+    command: >
+      /bin/sh -c
+      "envsubst '
+      $$X_PROXY_NAME
+      $$X_PROXY_PORT
+      $$X_PROXY_SCHEME
+      $$X_PATH
+      ' </etc/nginx/conf.d/jira_site.template > /etc/nginx/conf.d/default.conf
+      && cat /etc/nginx/conf.d/default.conf
+      && exec nginx -g 'daemon off;'"
+    volumes:
+      - ./nginx/jira_site.template:/etc/nginx/conf.d/jira_site.template
+
 
 volumes:
   jira-data:
