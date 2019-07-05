@@ -1,0 +1,14 @@
+#
+# modified from following src:
+# https://gist.github.com/lvaylet/cdef4c78d2e61634d80238acd5f321be#file-atlassian-jira-docker-compose-yml
+#
+version: '3'
+
+services:
+  sip:
+    container_name: sip
+    restart: always
+    build: ./sip
+    image: boya/market-sip:1.0.0
+    volumes:
+      - /workspace:/workspace
