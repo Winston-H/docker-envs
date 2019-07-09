@@ -12,6 +12,34 @@ services:
     build: ./sip
     image: boya/market-sip:1.0.0
     ports:
+      # ssh
       - "5022:22"
+      #
+      # LiveCMS 信令服务
+      #
+      # sip
+      - "5060:5060/tcp"
+      - "5060:5060/udp"
+      # http
+      - "10000:10000"
+      # redis (internal)
+      - "26379:26379"
+      #
+      # LiveSMS 流媒体服务
+      #
+      # sip
+      - "5070:5070/tcp"
+      - "5070:5070/udp"
+      # http
+      - "10001:10001"
+      # rtmp live
+      - "11935:11935"
+      # rtp over tcp
+      #- "30000-40000:30000-40000/tcp"
+      - "30000-30100:30000-30100/tcp"
+      # rtp/rtcp over udp
+      #- "50000-60000:50000-60000/udp"
+      - "50000-50100:50000-50100/udp"
     volumes:
       - /workspace:/workspace
+      - /home:/home
