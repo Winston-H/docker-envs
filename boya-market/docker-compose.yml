@@ -10,5 +10,7 @@ services:
     restart: always
     build: ./sip
     image: boya/market-sip:1.0.0
+    ports:
+      - "5022:22"
     volumes:
       - /workspace:/workspace
