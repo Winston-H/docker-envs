@@ -5,10 +5,27 @@
 version: '3'
 
 services:
+  dev:
+    container_name: dev
+    hostname: dev
+    restart: "no"
+    build: ./dev
+    image: boya/market-dev:1.0.0
+    ports:
+      # ssh
+      - "10022:22"
+      # mosh-server
+      - "60100:60150/udp"
+      # vnc-server
+      - "15901-15910:5901-5910"
+    volumes:
+      - "vol-workspace:/workspace"
+      - "vol-home:/home"
+
   sip:
     container_name: sip
-    hostname: sip
-    restart: always
+    hostname: sip2
+    restart: "always"
     build: ./sip
     image: boya/market-sip:1.0.0
     ports:
@@ -41,5 +58,20 @@ services:
       #- "50000-60000:50000-60000/udp"
       - "50000-50100:50000-50100/udp"
     volumes:
-      - /workspace:/workspace
-      - /home:/home
+      - "vol-workspace:/workspace"
+      - "vol-home:/home"
+
+volumes:
+  vol-workspace:
+    driver: "local"
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "/workspace"
+
+  vol-home:
+    driver: "local"
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "/home"
