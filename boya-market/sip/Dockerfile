@@ -1,3 +1,5 @@
-FROM boya/market-dev:1.0.0
+FROM ${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}
 
-RUN true
+
+ARG DOCKER_REPO_PREFIX
+ARG IMG_TAG_dev

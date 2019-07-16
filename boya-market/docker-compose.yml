@@ -9,8 +9,20 @@ services:
     container_name: dev
     hostname: dev
     restart: "no"
-    build: ./dev
-    image: boya/market-dev:1.0.0
+    build:
+      context: ./dev
+      dockerfile: Dockerfile
+      args:
+        - PASSWORD_root=${PASSWORD_root}
+        - GID_boya=${GID_boya}
+        - GID_boya_market=${GID_boya_market}
+        - GID_boya_sip=${GID_boya_sip}
+        - UID_boya_market=${UID_boya_market}
+        - UID_boya_sip=${UID_boya_sip}
+        - PASSWORD_boya_market=${PASSWORD_boya_market}
+        - PASSWORD_boya_sip=${PASSWORD_boya_sip}
+
+    image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
     ports:
       # ssh
       - "10022:22"
@@ -24,10 +36,16 @@ services:
 
   sip:
     container_name: sip
-    hostname: sip2
+    hostname: sip
     restart: "always"
-    build: ./sip
-    image: boya/market-sip:1.0.0
+    build:
+      context: ./sip
+      dockerfile: Dockerfile
+      args:
+        - DOCKER_REPO_PREFIX=${DOCKER_REPO_PREFIX}
+        - IMG_TAG_dev=${IMG_TAG_dev}
+
+    image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
     ports:
       # ssh
       - "5022:22"
