@@ -105,7 +105,7 @@ RUN true \
  && if [ -n "${SSH_KEY_root}" ]; then \
         mkdir -p ~root/.ssh \
      && chmod go-rwx ~root/.ssh \
-     && echo "${SSH_KEY_root}" >> ~root/.ssh/authorized_keys \
+     && echo "${SSH_KEY_root}" | sed -e 's/^"//g' -e 's/"$//g' >> ~root/.ssh/authorized_keys \
      && true; \
     fi \
  && sed -i -e 's/^#\? *\(PermitRootLogin\) .*$/\1 prohibit-password/g' /etc/ssh/sshd_config \
