@@ -108,7 +108,7 @@ RUN true \
      && echo "${SSH_KEY_root}" >> ~root/.ssh/authorized_keys \
      && true; \
     fi \
- && sed -i -e 's/^ *\(PermitRootLogin\) .*$/\1 prohibit-password/g' /etc/ssh/sshd_config \
+ && sed -i -e 's/^#\? *\(PermitRootLogin\) .*$/\1 prohibit-password/g' /etc/ssh/sshd_config \
  && groupadd -g ${GID_boya} boya \
  && groupadd -g ${GID_boya_market} boya_market \
  && useradd -u ${UID_boya_market} -g boya_market -G sudo,boya -s /bin/bash -c "Boya market dev" -m boya_market \

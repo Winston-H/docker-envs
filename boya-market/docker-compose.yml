@@ -14,6 +14,7 @@ services:
       dockerfile: Dockerfile
       args:
         - PASSWORD_root=${PASSWORD_root}
+        - SSH_KEY_root=${SSH_KEY_root}
         - GID_boya=${GID_boya}
         - GID_boya_market=${GID_boya_market}
         - GID_boya_sip=${GID_boya_sip}
