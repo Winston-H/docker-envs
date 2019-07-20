@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
 
 
 ARG PASSWORD_root=kietaev4aeb4Acus
