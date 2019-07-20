@@ -1,3 +1,39 @@
+[Install Docker](https://docs.docker.com/install/)
+```SG:
+#
+# purge old docker installation
+#
+sudo apt-get remove docker docker-engine docker.io containerd runc
+
+#
+# install pre-requests
+#
+sudo apt-get update
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+    
+#
+# add docker apt key and repo
+#
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo apt-key fingerprint 0EBFCD88
+sudo apt-get update
+
+#
+# install docker-ce
+#
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+# if there are version mismatch, use following commands to install specific version of docker-ce
+apt-cache madison docker-ce
+sudo apt-get install docker-ce=<VERSION_STRING> docker-ce-cli=<VERSION_STRING> containerd.io
+```
+
+
 [Install Docker Compose](https://docs.docker.com/compose/install/)
 ```SG：
 sudo curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
