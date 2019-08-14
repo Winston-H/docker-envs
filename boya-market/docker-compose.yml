@@ -49,7 +49,7 @@ services:
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
     ports:
       # ssh
-      - "5022:22"
+      - "10023:22"
       #
       # LiveCMS 信令服务
       #
@@ -72,10 +72,100 @@ services:
       - "11935:11935"
       # rtp over tcp
       #- "30000-40000:30000-40000/tcp"
-      - "30000-30100:30000-30100/tcp"
+      - "30000-30009:30000-30009/tcp"
       # rtp/rtcp over udp
       #- "50000-60000:50000-60000/udp"
-      - "50000-50100:50000-50100/udp"
+      - "50000-50009:50000-50009/udp"
+    volumes:
+      - "vol-workspace:/workspace"
+      - "vol-home:/home"
+
+  cms1:
+    container_name: cms1
+    hostname: cms1
+    restart: "always"
+    build:
+      context: ./sip
+      dockerfile: Dockerfile
+      args:
+        - DOCKER_REPO_PREFIX=${DOCKER_REPO_PREFIX}
+        - IMG_TAG_dev=${IMG_TAG_dev}
+
+    image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
+    ports:
+      # ssh
+      - "10024:22"
+      #
+      # LiveCMS 信令服务
+      #
+      # sip
+      - "5061:5061/tcp"
+      - "5061:5061/udp"
+      # http
+      - "10002:10002"
+      # redis (internal)
+      - "26380:26380"
+      #
+      # LiveSMS 流媒体服务
+      #
+      # sip
+      - "5071:5071/tcp"
+      - "5071:5071/udp"
+      # http
+      - "10003:10003"
+      # rtmp live
+      - "11936:11936"
+      # rtp over tcp
+      #- "30000-40000:30000-40000/tcp"
+      - "30010-30019:30010-30019/tcp"
+      # rtp/rtcp over udp
+      #- "50000-60000:50000-60000/udp"
+      - "50010-50019:50010-50019/udp"
+    volumes:
+      - "vol-workspace:/workspace"
+      - "vol-home:/home"
+
+  cms2:
+    container_name: cms2
+    hostname: cms2
+    restart: "always"
+    build:
+      context: ./sip
+      dockerfile: Dockerfile
+      args:
+        - DOCKER_REPO_PREFIX=${DOCKER_REPO_PREFIX}
+        - IMG_TAG_dev=${IMG_TAG_dev}
+
+    image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
+    ports:
+      # ssh
+      - "10025:22"
+      #
+      # LiveCMS 信令服务
+      #
+      # sip
+      - "5062:5062/tcp"
+      - "5062:5062/udp"
+      # http
+      - "10004:10004"
+      # redis (internal)
+      - "26381:26381"
+      #
+      # LiveSMS 流媒体服务
+      #
+      # sip
+      - "5072:5072/tcp"
+      - "5072:5072/udp"
+      # http
+      - "10005:10005"
+      # rtmp live
+      - "11937:11937"
+      # rtp over tcp
+      #- "30000-40000:30000-40000/tcp"
+      - "30020-30029:30020-30029/tcp"
+      # rtp/rtcp over udp
+      #- "50000-60000:50000-60000/udp"
+      - "50020-50029:50020-50029/udp"
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
