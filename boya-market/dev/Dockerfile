@@ -31,6 +31,7 @@ RUN true \
         bzip2 \
         build-essential \
         curl \
+        git \
         openssh-server \
         rsync \
         screen \
