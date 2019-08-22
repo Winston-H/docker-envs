@@ -31,6 +31,11 @@ services:
       - "60100:60150/udp"
       # vnc-server
       - "15901-15910:5901-5910"
+    networks:
+      public:
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.11/24
+      srvdoom1:
+        #ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.11/24
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -76,6 +81,11 @@ services:
       # rtp/rtcp over udp
       #- "50000-60000:50000-60000/udp"
       - "50000-50009:50000-50009/udp"
+    networks:
+      public:
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.11/24
+      srvdoom1:
+        #ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.11/24
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -184,3 +194,18 @@ volumes:
       type: "none"
       o: "bind"
       device: "/home"
+
+networks:
+  default:
+    #external:
+    #  name: my-pre-existing-network
+  public:
+    ipam:
+      driver: default
+      config:
+        - subnet: "${NETWORK_PUBLIC_PREFIX}.0/24"
+  srvdoom1:
+    ipam:
+      driver: default
+      config:
+        - subnet: "${NETWORK_SRVDOOM1_PREFIX}.0/24"
