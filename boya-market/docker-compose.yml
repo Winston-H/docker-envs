@@ -6,9 +6,114 @@ version: '3'
 
 services:
   dev:
+    # 开发节点、跳转机
     container_name: dev
     hostname: dev
-    restart: "no"
+    restart: "always"
+    build:
+      context: ./dev
+      dockerfile: Dockerfile
+      args:
+        - PASSWORD_root=${PASSWORD_root}
+        - SSH_KEY_root=${SSH_KEY_root}
+        - GID_boya=${GID_boya}
+        - GID_boya_market=${GID_boya_market}
+        - GID_boya_sip=${GID_boya_sip}
+        - UID_boya_market=${UID_boya_market}
+        - UID_boya_sip=${UID_boya_sip}
+        - PASSWORD_boya_market=${PASSWORD_boya_market}
+        - PASSWORD_boya_sip=${PASSWORD_boya_sip}
+
+    image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
+    ports:
+      # ssh
+      - "10020:22"
+      # mosh-server
+      - "60100:60150/udp"
+      # vnc-server
+      - "15901-15910:5901-5910"
+    networks:
+      public:
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.11/24
+      srvdoom1:
+        #ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.11/24
+    volumes:
+      - "vol-workspace:/workspace"
+      - "vol-home:/home"
+
+  device-ui:
+    # web portal
+    container_name: device-ui
+    hostname: device-ui
+    depends_on:
+      - device-gw
+    restart: "always"
+    build:
+      context: ./dev
+      dockerfile: Dockerfile
+      args:
+        - PASSWORD_root=${PASSWORD_root}
+        - SSH_KEY_root=${SSH_KEY_root}
+        - GID_boya=${GID_boya}
+        - GID_boya_market=${GID_boya_market}
+        - GID_boya_sip=${GID_boya_sip}
+        - UID_boya_market=${UID_boya_market}
+        - UID_boya_sip=${UID_boya_sip}
+        - PASSWORD_boya_market=${PASSWORD_boya_market}
+        - PASSWORD_boya_sip=${PASSWORD_boya_sip}
+
+    image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
+    ports:
+      # ssh
+      - "10021:22"
+    networks:
+      public:
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.11/24
+      srvdoom1:
+        #ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.11/24
+    volumes:
+      - "vol-workspace:/workspace"
+      - "vol-home:/home"
+
+  device-gw:
+    # web portal
+    container_name: device-gw
+    hostname: device-gw
+    restart: "always"
+    build:
+      context: ./dev
+      dockerfile: Dockerfile
+      args:
+        - PASSWORD_root=${PASSWORD_root}
+        - SSH_KEY_root=${SSH_KEY_root}
+        - GID_boya=${GID_boya}
+        - GID_boya_market=${GID_boya_market}
+        - GID_boya_sip=${GID_boya_sip}
+        - UID_boya_market=${UID_boya_market}
+        - UID_boya_sip=${UID_boya_sip}
+        - PASSWORD_boya_market=${PASSWORD_boya_market}
+        - PASSWORD_boya_sip=${PASSWORD_boya_sip}
+
+    image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
+    ports:
+      # ssh
+      - "10023:22"
+    networks:
+      public:
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.11/24
+      srvdoom1:
+        #ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.11/24
+    volumes:
+      - "vol-workspace:/workspace"
+      - "vol-home:/home"
+
+  market-ui:
+    # web portal
+    container_name: market-ui
+    hostname: market-ui
+    depends_on:
+      - market-gw
+    restart: "always"
     build:
       context: ./dev
       dockerfile: Dockerfile
@@ -27,10 +132,6 @@ services:
     ports:
       # ssh
       - "10022:22"
-      # mosh-server
-      - "60100:60150/udp"
-      # vnc-server
-      - "15901-15910:5901-5910"
     networks:
       public:
         #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.11/24
@@ -40,9 +141,42 @@ services:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
 
-  sip:
-    container_name: sip
-    hostname: sip
+  market-gw:
+    # web portal
+    container_name: market-gw
+    hostname: market-gw
+    restart: "always"
+    build:
+      context: ./dev
+      dockerfile: Dockerfile
+      args:
+        - PASSWORD_root=${PASSWORD_root}
+        - SSH_KEY_root=${SSH_KEY_root}
+        - GID_boya=${GID_boya}
+        - GID_boya_market=${GID_boya_market}
+        - GID_boya_sip=${GID_boya_sip}
+        - UID_boya_market=${UID_boya_market}
+        - UID_boya_sip=${UID_boya_sip}
+        - PASSWORD_boya_market=${PASSWORD_boya_market}
+        - PASSWORD_boya_sip=${PASSWORD_boya_sip}
+
+    image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
+    ports:
+      # ssh
+      - "10024:22"
+    networks:
+      public:
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.11/24
+      srvdoom1:
+        #ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.11/24
+    volumes:
+      - "vol-workspace:/workspace"
+      - "vol-home:/home"
+
+  cms0:
+    # 顶层CMS
+    container_name: cms0
+    hostname: cms0
     restart: "always"
     build:
       context: ./sip
@@ -54,7 +188,7 @@ services:
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
     ports:
       # ssh
-      - "10023:22"
+      - "10025:22"
       #
       # LiveCMS 信令服务
       #
@@ -104,7 +238,7 @@ services:
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
     ports:
       # ssh
-      - "10024:22"
+      - "10026:22"
       #
       # LiveCMS 信令服务
       #
@@ -149,7 +283,7 @@ services:
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
     ports:
       # ssh
-      - "10025:22"
+      - "10027:22"
       #
       # LiveCMS 信令服务
       #
