@@ -14,8 +14,8 @@ services:
     image: jira/jira-software:8.1.0
     environment:
       - CATALINA_OPTS=-Xms768m -Xmx1024m
-      - X_PROXY_NAME=10.10.1.35
-      - X_PROXY_PORT=8080
+      - X_PROXY_NAME=dev.iqubic.net
+      - X_PROXY_PORT=18080
       - X_PROXY_SCHEME=http
       - X_PATH=/jira
     volumes:
@@ -43,10 +43,10 @@ services:
     restart: always
     image: nginx:1.15-alpine
     ports:
-      - "8080:80"
+      - "18080:80"
     environment:
-      - X_PROXY_NAME=10.10.1.35
-      - X_PROXY_PORT=8080
+      - X_PROXY_NAME=dev.iqubic.net
+      - X_PROXY_PORT=18080
       - X_PROXY_SCHEME=http
       - X_PATH=/jira
     command: >
