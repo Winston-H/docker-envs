@@ -27,16 +27,16 @@ services:
     image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
     ports:
       # ssh
-      - "10020:22"
+      - "10022:22"
       # mosh-server
       - "60100:60150/udp"
       # vnc-server
       - "15901-15910:5901-5910"
     networks:
       public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.11/24
+        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.11/24
       srvdoom1:
-        #ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.11/24
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.11/24
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -65,12 +65,13 @@ services:
     image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
     ports:
       # ssh
-      - "10021:22"
+      - "10023:22"
+      - "9021:9021"
     networks:
       public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.11/24
+        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.21/24
       srvdoom1:
-        #ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.11/24
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.21/24
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -97,12 +98,13 @@ services:
     image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
     ports:
       # ssh
-      - "10023:22"
+      - "10025:22"
+      - "9023:9023"
     networks:
-      public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.11/24
+      #public:
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.22/24
       srvdoom1:
-        #ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.11/24
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.22/24
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -131,12 +133,13 @@ services:
     image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
     ports:
       # ssh
-      - "10022:22"
+      - "10024:22"
+      - "9022:9022"
     networks:
       public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.11/24
+        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.23/24
       srvdoom1:
-        #ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.11/24
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.23/24
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -163,12 +166,13 @@ services:
     image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
     ports:
       # ssh
-      - "10024:22"
+      - "10026:22"
+      - "9024:9024"
     networks:
-      public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.11/24
+      #public:
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.24/24
       srvdoom1:
-        #ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.11/24
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.24/24
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -188,7 +192,7 @@ services:
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
     ports:
       # ssh
-      - "10025:22"
+      - "10027:22"
       #
       # LiveCMS 信令服务
       #
@@ -216,10 +220,10 @@ services:
       #- "50000-60000:50000-60000/udp"
       - "50000-50009:50000-50009/udp"
     networks:
-      public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.11/24
+      #public:
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.31/24
       srvdoom1:
-        #ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.11/24
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.31/24
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -238,7 +242,7 @@ services:
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
     ports:
       # ssh
-      - "10026:22"
+      - "10028:22"
       #
       # LiveCMS 信令服务
       #
@@ -265,6 +269,11 @@ services:
       # rtp/rtcp over udp
       #- "50000-60000:50000-60000/udp"
       - "50010-50019:50010-50019/udp"
+    networks:
+      #public:
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.32/24
+      srvdoom1:
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.32/24
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -283,7 +292,7 @@ services:
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
     ports:
       # ssh
-      - "10027:22"
+      - "10029:22"
       #
       # LiveCMS 信令服务
       #
@@ -310,9 +319,143 @@ services:
       # rtp/rtcp over udp
       #- "50000-60000:50000-60000/udp"
       - "50020-50029:50020-50029/udp"
+    networks:
+      #public:
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.33/24
+      srvdoom1:
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.33/24
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
+
+  aisrv01:
+    # AI服务器
+    container_name: aisrv01
+    hostname: aisrv01
+    restart: "always"
+    build:
+      context: ./dev
+      dockerfile: Dockerfile
+      args:
+        - PASSWORD_root=${PASSWORD_root}
+        - SSH_KEY_root=${SSH_KEY_root}
+        - GID_boya=${GID_boya}
+        - GID_boya_market=${GID_boya_market}
+        - GID_boya_sip=${GID_boya_sip}
+        - UID_boya_market=${UID_boya_market}
+        - UID_boya_sip=${UID_boya_sip}
+        - PASSWORD_boya_market=${PASSWORD_boya_market}
+        - PASSWORD_boya_sip=${PASSWORD_boya_sip}
+
+    image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
+    ports:
+      # ssh
+      - "10030:22"
+    networks:
+      #public:
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.41/24
+      srvdoom1:
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.41/24
+    volumes:
+      - "vol-workspace:/workspace"
+      - "vol-home:/home"
+
+  aisrv11:
+    # AI服务器
+    container_name: aisrv11
+    hostname: aisrv11
+    restart: "always"
+    build:
+      context: ./dev
+      dockerfile: Dockerfile
+      args:
+        - PASSWORD_root=${PASSWORD_root}
+        - SSH_KEY_root=${SSH_KEY_root}
+        - GID_boya=${GID_boya}
+        - GID_boya_market=${GID_boya_market}
+        - GID_boya_sip=${GID_boya_sip}
+        - UID_boya_market=${UID_boya_market}
+        - UID_boya_sip=${UID_boya_sip}
+        - PASSWORD_boya_market=${PASSWORD_boya_market}
+        - PASSWORD_boya_sip=${PASSWORD_boya_sip}
+
+    image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
+    ports:
+      # ssh
+      - "10031:22"
+    networks:
+      #public:
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.42/24
+      srvdoom1:
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.42/24
+    volumes:
+      - "vol-workspace:/workspace"
+      - "vol-home:/home"
+
+  aisrv21:
+    # AI服务器
+    container_name: aisrv21
+    hostname: aisrv21
+    restart: "always"
+    build:
+      context: ./dev
+      dockerfile: Dockerfile
+      args:
+        - PASSWORD_root=${PASSWORD_root}
+        - SSH_KEY_root=${SSH_KEY_root}
+        - GID_boya=${GID_boya}
+        - GID_boya_market=${GID_boya_market}
+        - GID_boya_sip=${GID_boya_sip}
+        - UID_boya_market=${UID_boya_market}
+        - UID_boya_sip=${UID_boya_sip}
+        - PASSWORD_boya_market=${PASSWORD_boya_market}
+        - PASSWORD_boya_sip=${PASSWORD_boya_sip}
+
+    image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
+    ports:
+      # ssh
+      - "10032:22"
+    networks:
+      #public:
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.43/24
+      srvdoom1:
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.43/24
+    volumes:
+      - "vol-workspace:/workspace"
+      - "vol-home:/home"
+
+  fsrouter01:
+    # 特征流队列服务器
+    container_name: fsrouter01
+    hostname: fsrouter01
+    restart: "always"
+    build:
+      context: ./dev
+      dockerfile: Dockerfile
+      args:
+        - PASSWORD_root=${PASSWORD_root}
+        - SSH_KEY_root=${SSH_KEY_root}
+        - GID_boya=${GID_boya}
+        - GID_boya_market=${GID_boya_market}
+        - GID_boya_sip=${GID_boya_sip}
+        - UID_boya_market=${UID_boya_market}
+        - UID_boya_sip=${UID_boya_sip}
+        - PASSWORD_boya_market=${PASSWORD_boya_market}
+        - PASSWORD_boya_sip=${PASSWORD_boya_sip}
+
+    image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
+    ports:
+      # ssh
+      - "10033:22"
+    networks:
+      #public:
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.51/24
+      srvdoom1:
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.51/24
+    volumes:
+      - "vol-workspace:/workspace"
+      - "vol-home:/home"
+
 
 volumes:
   vol-workspace:
