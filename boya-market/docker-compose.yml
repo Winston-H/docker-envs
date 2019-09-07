@@ -34,9 +34,9 @@ services:
       - "15901-15910:5901-5910"
     networks:
       public:
-        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.11/24
+        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.11
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.11/24
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.11
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -69,9 +69,9 @@ services:
       - "9021:9021"
     networks:
       public:
-        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.21/24
+        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.21
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.21/24
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.21
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -102,9 +102,9 @@ services:
       - "9023:9023"
     networks:
       #public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.22/24
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.22
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.22/24
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.22
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -137,9 +137,9 @@ services:
       - "9022:9022"
     networks:
       public:
-        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.23/24
+        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.23
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.23/24
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.23
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -170,9 +170,9 @@ services:
       - "9024:9024"
     networks:
       #public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.24/24
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.24
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.24/24
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.24
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -221,9 +221,9 @@ services:
       - "50000-50009:50000-50009/udp"
     networks:
       #public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.31/24
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.31
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.31/24
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.31
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -271,9 +271,9 @@ services:
       - "50010-50019:50010-50019/udp"
     networks:
       #public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.32/24
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.32
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.32/24
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.32
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -321,9 +321,9 @@ services:
       - "50020-50029:50020-50029/udp"
     networks:
       #public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.33/24
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.33
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.33/24
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.33
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -353,9 +353,9 @@ services:
       - "10030:22"
     networks:
       #public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.41/24
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.41
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.41/24
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.41
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -385,9 +385,9 @@ services:
       - "10031:22"
     networks:
       #public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.42/24
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.42
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.42/24
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.42
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -417,9 +417,9 @@ services:
       - "10032:22"
     networks:
       #public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.43/24
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.43
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.43/24
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.43
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -449,9 +449,9 @@ services:
       - "10033:22"
     networks:
       #public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.51/24
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.51
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.51/24
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.51
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
