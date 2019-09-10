@@ -28,10 +28,12 @@ RUN true \
  && apt-get update \
  && apt-get install -y \
         apt-utils \
-        bzip2 \
         build-essential \
+        bzip2 \
         curl \
         git \
+        locales \
+        locales-all \
         openssh-server \
         rsync \
         screen \
