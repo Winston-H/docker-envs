@@ -6,7 +6,7 @@ version: '3'
 
 services:
   dev:
-    # 开发环境虚拟服务
+    # 开发环境 -- 虚拟服务
     container_name: dev
     hostname: dev
     restart: "no"
@@ -25,6 +25,19 @@ services:
         - PASSWORD_boya_sip=${PASSWORD_boya_sip}
     image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
 
+  sip:
+    # SIP开发环境 -- 虚拟服务
+    container_name: sip
+    hostname: sip
+    restart: "no"
+    build:
+      context: ./sip
+      dockerfile: Dockerfile
+      args:
+        - DOCKER_REPO_PREFIX=${DOCKER_REPO_PREFIX}
+        - IMG_TAG_ssh=${IMG_TAG_ssh}
+    image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
+
   ssh:
     # 开发节点、跳转机
     container_name: ssh
@@ -33,6 +46,9 @@ services:
     build:
       context: ./ssh
       dockerfile: Dockerfile
+      args:
+        - DOCKER_REPO_PREFIX=${DOCKER_REPO_PREFIX}
+        - IMG_TAG_dev=${IMG_TAG_dev}
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     ports:
       # ssh
@@ -57,21 +73,7 @@ services:
     depends_on:
       - device-gw
     restart: "always"
-    build:
-      context: ./dev
-      dockerfile: Dockerfile
-      args:
-        - PASSWORD_root=${PASSWORD_root}
-        - SSH_KEY_root=${SSH_KEY_root}
-        - GID_boya=${GID_boya}
-        - GID_boya_market=${GID_boya_market}
-        - GID_boya_sip=${GID_boya_sip}
-        - UID_boya_market=${UID_boya_market}
-        - UID_boya_sip=${UID_boya_sip}
-        - PASSWORD_boya_market=${PASSWORD_boya_market}
-        - PASSWORD_boya_sip=${PASSWORD_boya_sip}
-
-    image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
+    image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     ports:
       # ssh
       - "10023:22"
@@ -90,21 +92,7 @@ services:
     container_name: device-gw
     hostname: device-gw
     restart: "always"
-    build:
-      context: ./dev
-      dockerfile: Dockerfile
-      args:
-        - PASSWORD_root=${PASSWORD_root}
-        - SSH_KEY_root=${SSH_KEY_root}
-        - GID_boya=${GID_boya}
-        - GID_boya_market=${GID_boya_market}
-        - GID_boya_sip=${GID_boya_sip}
-        - UID_boya_market=${UID_boya_market}
-        - UID_boya_sip=${UID_boya_sip}
-        - PASSWORD_boya_market=${PASSWORD_boya_market}
-        - PASSWORD_boya_sip=${PASSWORD_boya_sip}
-
-    image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
+    image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     ports:
       # ssh
       - "10025:22"
@@ -125,21 +113,7 @@ services:
     depends_on:
       - market-gw
     restart: "always"
-    build:
-      context: ./dev
-      dockerfile: Dockerfile
-      args:
-        - PASSWORD_root=${PASSWORD_root}
-        - SSH_KEY_root=${SSH_KEY_root}
-        - GID_boya=${GID_boya}
-        - GID_boya_market=${GID_boya_market}
-        - GID_boya_sip=${GID_boya_sip}
-        - UID_boya_market=${UID_boya_market}
-        - UID_boya_sip=${UID_boya_sip}
-        - PASSWORD_boya_market=${PASSWORD_boya_market}
-        - PASSWORD_boya_sip=${PASSWORD_boya_sip}
-
-    image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
+    image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     ports:
       # ssh
       - "10024:22"
@@ -158,21 +132,7 @@ services:
     container_name: market-gw
     hostname: market-gw
     restart: "always"
-    build:
-      context: ./dev
-      dockerfile: Dockerfile
-      args:
-        - PASSWORD_root=${PASSWORD_root}
-        - SSH_KEY_root=${SSH_KEY_root}
-        - GID_boya=${GID_boya}
-        - GID_boya_market=${GID_boya_market}
-        - GID_boya_sip=${GID_boya_sip}
-        - UID_boya_market=${UID_boya_market}
-        - UID_boya_sip=${UID_boya_sip}
-        - PASSWORD_boya_market=${PASSWORD_boya_market}
-        - PASSWORD_boya_sip=${PASSWORD_boya_sip}
-
-    image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
+    image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     ports:
       # ssh
       - "10026:22"
@@ -191,13 +151,6 @@ services:
     container_name: cms0
     hostname: cms0
     restart: "always"
-    build:
-      context: ./sip
-      dockerfile: Dockerfile
-      args:
-        - DOCKER_REPO_PREFIX=${DOCKER_REPO_PREFIX}
-        - IMG_TAG_dev=${IMG_TAG_dev}
-
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
     ports:
       # ssh
@@ -241,13 +194,6 @@ services:
     container_name: cms1
     hostname: cms1
     restart: "always"
-    build:
-      context: ./sip
-      dockerfile: Dockerfile
-      args:
-        - DOCKER_REPO_PREFIX=${DOCKER_REPO_PREFIX}
-        - IMG_TAG_dev=${IMG_TAG_dev}
-
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
     ports:
       # ssh
@@ -291,13 +237,6 @@ services:
     container_name: cms2
     hostname: cms2
     restart: "always"
-    build:
-      context: ./sip
-      dockerfile: Dockerfile
-      args:
-        - DOCKER_REPO_PREFIX=${DOCKER_REPO_PREFIX}
-        - IMG_TAG_dev=${IMG_TAG_dev}
-
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
     ports:
       # ssh
@@ -342,21 +281,7 @@ services:
     container_name: aisrv01
     hostname: aisrv01
     restart: "always"
-    build:
-      context: ./dev
-      dockerfile: Dockerfile
-      args:
-        - PASSWORD_root=${PASSWORD_root}
-        - SSH_KEY_root=${SSH_KEY_root}
-        - GID_boya=${GID_boya}
-        - GID_boya_market=${GID_boya_market}
-        - GID_boya_sip=${GID_boya_sip}
-        - UID_boya_market=${UID_boya_market}
-        - UID_boya_sip=${UID_boya_sip}
-        - PASSWORD_boya_market=${PASSWORD_boya_market}
-        - PASSWORD_boya_sip=${PASSWORD_boya_sip}
-
-    image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
+    image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     ports:
       # ssh
       - "10030:22"
@@ -374,21 +299,7 @@ services:
     container_name: aisrv11
     hostname: aisrv11
     restart: "always"
-    build:
-      context: ./dev
-      dockerfile: Dockerfile
-      args:
-        - PASSWORD_root=${PASSWORD_root}
-        - SSH_KEY_root=${SSH_KEY_root}
-        - GID_boya=${GID_boya}
-        - GID_boya_market=${GID_boya_market}
-        - GID_boya_sip=${GID_boya_sip}
-        - UID_boya_market=${UID_boya_market}
-        - UID_boya_sip=${UID_boya_sip}
-        - PASSWORD_boya_market=${PASSWORD_boya_market}
-        - PASSWORD_boya_sip=${PASSWORD_boya_sip}
-
-    image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
+    image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     ports:
       # ssh
       - "10031:22"
@@ -406,21 +317,7 @@ services:
     container_name: aisrv21
     hostname: aisrv21
     restart: "always"
-    build:
-      context: ./dev
-      dockerfile: Dockerfile
-      args:
-        - PASSWORD_root=${PASSWORD_root}
-        - SSH_KEY_root=${SSH_KEY_root}
-        - GID_boya=${GID_boya}
-        - GID_boya_market=${GID_boya_market}
-        - GID_boya_sip=${GID_boya_sip}
-        - UID_boya_market=${UID_boya_market}
-        - UID_boya_sip=${UID_boya_sip}
-        - PASSWORD_boya_market=${PASSWORD_boya_market}
-        - PASSWORD_boya_sip=${PASSWORD_boya_sip}
-
-    image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
+    image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     ports:
       # ssh
       - "10032:22"
@@ -438,21 +335,7 @@ services:
     container_name: fsrouter01
     hostname: fsrouter01
     restart: "always"
-    build:
-      context: ./dev
-      dockerfile: Dockerfile
-      args:
-        - PASSWORD_root=${PASSWORD_root}
-        - SSH_KEY_root=${SSH_KEY_root}
-        - GID_boya=${GID_boya}
-        - GID_boya_market=${GID_boya_market}
-        - GID_boya_sip=${GID_boya_sip}
-        - UID_boya_market=${UID_boya_market}
-        - UID_boya_sip=${UID_boya_sip}
-        - PASSWORD_boya_market=${PASSWORD_boya_market}
-        - PASSWORD_boya_sip=${PASSWORD_boya_sip}
-
-    image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
+    image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     ports:
       # ssh
       - "10033:22"
