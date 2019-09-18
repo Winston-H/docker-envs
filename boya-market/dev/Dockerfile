@@ -64,7 +64,8 @@ RUN true \
 #
 RUN true \
  && export DEBIAN_FRONTEND="noninteractive" \
- && GO_INSTALLER_URL_PREFIX="https://dl.google.com/go/" \
+ && true GO_INSTALLER_URL_PREFIX="https://dl.google.com/go/" \
+ && GO_INSTALLER_URL_PREFIX="https://studygolang.com/dl/golang/" \
  && GO_INSTALLER="go${GO_VERSION}.linux-amd64.tar.gz" \
  && curl -fsSLO ${GO_INSTALLER_URL_PREFIX}${GO_INSTALLER} \
  && tar -xzf ${GO_INSTALLER} -C /usr/local/ \
@@ -102,7 +103,8 @@ RUN true \
 #
 RUN true \
  && export DEBIAN_FRONTEND="noninteractive" \
- && CONDA_INSTALLER_URL_PREFIX="https://repo.continuum.io/miniconda/" \
+ && true CONDA_INSTALLER_URL_PREFIX="https://repo.continuum.io/miniconda/" \
+ && CONDA_INSTALLER_URL_PREFIX="https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/" \
  && CONDA_INSTALLER="Miniconda3-latest-Linux-x86_64.sh" \
  && curl -fsSLO ${CONDA_INSTALLER_URL_PREFIX}${CONDA_INSTALLER} \
  && conda_install_home="/opt/anaconda3" \
