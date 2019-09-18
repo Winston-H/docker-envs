@@ -38,6 +38,7 @@ RUN true \
         iputils-tracepath \
         locales \
         locales-all \
+        mosh \
         nmap \
         openssh-server \
         rsync \
