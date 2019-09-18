@@ -26,21 +26,33 @@ RUN true \
  && export DEBIAN_FRONTEND="noninteractive" \
  && sed -i -e 's,//\(archive.ubuntu.com\),//cn.\1,g' /etc/apt/sources.list \
  && apt-get update \
+ && echo "Install dev tools and libs" \
  && apt-get install -y \
         apt-utils \
         build-essential \
         bzip2 \
         curl \
+        dnsutils \
         git \
+        iputils-ping \
+        iputils-tracepath \
         locales \
         locales-all \
+        nmap \
         openssh-server \
         rsync \
         screen \
         sudo \
+        tcpdump \
         tmux \
         vim \
         wget \
+ && echo "Install Darwin sys deps" \
+ && apt-get install -y \
+        libgl1-mesa-glx \
+        munge \
+        slurm-wlm \
+ && apt-get clean \
  && true
 
 
@@ -120,6 +132,3 @@ RUN true \
  && useradd -u ${UID_boya_sip} -g boya_sip -G sudo,boya -s /bin/bash -c "Boya GB28181 dev" -m boya_sip \
  && echo "boya_sip:${PASSWORD_boya_sip}" | chpasswd \
  && true
-
-
-ENTRYPOINT /etc/init.d/ssh start -D

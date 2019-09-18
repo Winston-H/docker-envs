@@ -6,10 +6,10 @@ version: '3'
 
 services:
   dev:
-    # 开发节点、跳转机
+    # 开发环境虚拟服务
     container_name: dev
     hostname: dev
-    restart: "always"
+    restart: "no"
     build:
       context: ./dev
       dockerfile: Dockerfile
@@ -23,8 +23,17 @@ services:
         - UID_boya_sip=${UID_boya_sip}
         - PASSWORD_boya_market=${PASSWORD_boya_market}
         - PASSWORD_boya_sip=${PASSWORD_boya_sip}
-
     image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
+
+  ssh:
+    # 开发节点、跳转机
+    container_name: ssh
+    hostname: ssh
+    restart: "always"
+    build:
+      context: ./ssh
+      dockerfile: Dockerfile
+    image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     ports:
       # ssh
       - "10022:22"

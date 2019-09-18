@@ -1,0 +1,8 @@
+ARG DOCKER_REPO_PREFIX
+ARG IMG_TAG_dev
+
+
+FROM ${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}
+
+
+ENTRYPOINT /etc/init.d/ssh start -D
