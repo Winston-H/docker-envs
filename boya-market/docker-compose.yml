@@ -59,9 +59,9 @@ services:
       - "15901-15910:5901-5910"
     networks:
       public:
-        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.11
+        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_SSH:-11}
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.11
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_SSH:-11}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -80,9 +80,9 @@ services:
       - "9021:9021"
     networks:
       public:
-        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.21
+        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_DEVICE_UI:-21}
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.21
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_DEVICE_UI:-21}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -99,9 +99,9 @@ services:
       - "9023:9023"
     networks:
       #public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.22
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_DEVICE_GW:-22}
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.22
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_DEVICE_GW:-22}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -120,9 +120,9 @@ services:
       - "9022:9022"
     networks:
       public:
-        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.23
+        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_MARKET_UI:-23}
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.23
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_MARKET_UI:-23}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -139,9 +139,9 @@ services:
       - "9024:9024"
     networks:
       #public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.24
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_MARKET_GW:-24}
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.24
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_MARKET_GW:-24}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -182,10 +182,10 @@ services:
       #- "50000-60000:50000-60000/udp"
       - "50000-50009:50000-50009/udp"
     networks:
-      #public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.31
+      public:
+        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_CMS0:-31}
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.31
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_CMS0:-31}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -225,10 +225,10 @@ services:
       #- "50000-60000:50000-60000/udp"
       - "50010-50019:50010-50019/udp"
     networks:
-      #public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.32
+      public:
+        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_CMS1:-32}
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.32
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_CMS1:-32}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -268,10 +268,10 @@ services:
       #- "50000-60000:50000-60000/udp"
       - "50020-50029:50020-50029/udp"
     networks:
-      #public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.33
+      public:
+        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_CMS2:-33}
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.33
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_CMS2:-33}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -287,9 +287,9 @@ services:
       - "10030:22"
     networks:
       #public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.41
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_AISRV01:-41}
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.41
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_AISRV01:-41}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -305,9 +305,9 @@ services:
       - "10031:22"
     networks:
       #public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.42
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_AISRV11:-42}
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.42
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_AISRV11:-42}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -323,9 +323,9 @@ services:
       - "10032:22"
     networks:
       #public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.43
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_AISRV21:-43}
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.43
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_AISRV21:-43}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -341,9 +341,9 @@ services:
       - "10033:22"
     networks:
       #public:
-        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.51
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_FSROUTER01:-51}
       srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.51
+        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_FSROUTER01:-51}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -370,6 +370,7 @@ networks:
     #  name: my-pre-existing-network
   public:
     ipam:
+      driver: default
       config:
         - subnet: "${NETWORK_PUBLIC_PREFIX}.0/24"
   srvdoom1:
@@ -377,5 +378,6 @@ networks:
     driver_opts:
       parent: ${NETWORK_SRVDOOM1_MACVLAN_PARENT}
     ipam:
+      driver: default
       config:
         - subnet: "${NETWORK_SRVDOOM1_PREFIX}.0/24"
