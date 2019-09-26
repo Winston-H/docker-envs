@@ -370,11 +370,12 @@ networks:
     #  name: my-pre-existing-network
   public:
     ipam:
-      driver: default
       config:
         - subnet: "${NETWORK_PUBLIC_PREFIX}.0/24"
   srvdoom1:
+    driver: macvlan
+    driver_opts:
+      parent: ${NETWORK_SRVDOOM1_MACVLAN_PARENT}
     ipam:
-      driver: default
       config:
         - subnet: "${NETWORK_SRVDOOM1_PREFIX}.0/24"
