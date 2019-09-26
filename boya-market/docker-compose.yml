@@ -76,7 +76,8 @@ services:
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     ports:
       # ssh
-      - "10023:22"
+      #- "10023:22"
+      # web portal port
       - "9021:9021"
     networks:
       public:
@@ -95,7 +96,8 @@ services:
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     ports:
       # ssh
-      - "10025:22"
+      #- "10025:22"
+      # web portal port
       - "9023:9023"
     networks:
       #public:
@@ -116,7 +118,8 @@ services:
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     ports:
       # ssh
-      - "10024:22"
+      #- "10024:22"
+      # web service port
       - "9022:9022"
     networks:
       public:
@@ -135,7 +138,8 @@ services:
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     ports:
       # ssh
-      - "10026:22"
+      #- "10026:22"
+      # web service port
       - "9024:9024"
     networks:
       #public:
@@ -154,7 +158,7 @@ services:
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
     ports:
       # ssh
-      - "10027:22"
+      #- "10027:22"
       #
       # LiveCMS 信令服务
       #
@@ -197,7 +201,7 @@ services:
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
     ports:
       # ssh
-      - "10028:22"
+      #- "10028:22"
       #
       # LiveCMS 信令服务
       #
@@ -240,7 +244,7 @@ services:
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
     ports:
       # ssh
-      - "10029:22"
+      #- "10029:22"
       #
       # LiveCMS 信令服务
       #
@@ -282,9 +286,9 @@ services:
     hostname: aisrv01
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
-    ports:
+    #ports:
       # ssh
-      - "10030:22"
+      #- "10030:22"
     networks:
       #public:
         #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_AISRV01:-41}
@@ -300,9 +304,9 @@ services:
     hostname: aisrv11
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
-    ports:
+    #ports:
       # ssh
-      - "10031:22"
+      #- "10031:22"
     networks:
       #public:
         #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_AISRV11:-42}
@@ -318,9 +322,9 @@ services:
     hostname: aisrv21
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
-    ports:
+    #ports:
       # ssh
-      - "10032:22"
+      #- "10032:22"
     networks:
       #public:
         #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_AISRV21:-43}
@@ -336,9 +340,9 @@ services:
     hostname: fsrouter01
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
-    ports:
+    #ports:
       # ssh
-      - "10033:22"
+      #- "10033:22"
     networks:
       #public:
         #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_FSROUTER01:-51}
