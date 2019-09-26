@@ -34,11 +34,13 @@ RUN true \
         curl \
         dnsutils \
         git \
+        iproute2 \
         iputils-ping \
         iputils-tracepath \
         locales \
         locales-all \
         mosh \
+        net-tools \
         nmap \
         openssh-server \
         rsync \
