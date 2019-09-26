@@ -52,7 +52,7 @@ services:
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     ports:
       # ssh
-      - "10022:22"
+      - "${SSH_PUBLISH_PORT_SSH:-10022}:22"
       # mosh-server
       - "60100:60150/udp"
       # vnc-server
