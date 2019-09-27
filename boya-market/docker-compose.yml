@@ -54,14 +54,14 @@ services:
       # ssh
       - "${SSH_PUBLISH_PORT_SSH:-10022}:22"
       # mosh-server
-      - "60100:60150/udp"
+      #- "60100-60150:60100-60150/udp"
       # vnc-server
-      - "15901-15910:5901-5910"
+      #- "15901-15910:5901-5910"
     networks:
-      public:
-        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_SSH:-11}
-      srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_SSH:-11}
+      #public:
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_SSH:-11}
+      default:
+        ipv4_address: ${NETWORK_DEFAULT_PREFIX}.${IPADDR_SUFFIX_SSH:-11}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -74,16 +74,16 @@ services:
       - device-gw
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
-    ports:
+    #ports:
       # ssh
       #- "10023:22"
       # web portal port
-      - "9021:9021"
+      #- "9021:9021"
     networks:
-      public:
-        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_DEVICE_UI:-21}
-      srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_DEVICE_UI:-21}
+      #public:
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_DEVICE_UI:-21}
+      default:
+        ipv4_address: ${NETWORK_DEFAULT_PREFIX}.${IPADDR_SUFFIX_DEVICE_UI:-21}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -94,16 +94,16 @@ services:
     hostname: device-gw
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
-    ports:
+    #ports:
       # ssh
       #- "10025:22"
       # web portal port
-      - "9023:9023"
+      #- "9023:9023"
     networks:
       #public:
         #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_DEVICE_GW:-22}
-      srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_DEVICE_GW:-22}
+      default:
+        ipv4_address: ${NETWORK_DEFAULT_PREFIX}.${IPADDR_SUFFIX_DEVICE_GW:-22}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -116,16 +116,16 @@ services:
       - market-gw
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
-    ports:
+    #ports:
       # ssh
       #- "10024:22"
       # web service port
-      - "9022:9022"
+      #- "9022:9022"
     networks:
-      public:
-        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_MARKET_UI:-23}
-      srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_MARKET_UI:-23}
+      #public:
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_MARKET_UI:-23}
+      default:
+        ipv4_address: ${NETWORK_DEFAULT_PREFIX}.${IPADDR_SUFFIX_MARKET_UI:-23}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -136,16 +136,16 @@ services:
     hostname: market-gw
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
-    ports:
+    #ports:
       # ssh
       #- "10026:22"
       # web service port
-      - "9024:9024"
+      #- "9024:9024"
     networks:
       #public:
         #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_MARKET_GW:-24}
-      srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_MARKET_GW:-24}
+      default:
+        ipv4_address: ${NETWORK_DEFAULT_PREFIX}.${IPADDR_SUFFIX_MARKET_GW:-24}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -156,40 +156,40 @@ services:
     hostname: cms0
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
-    ports:
-      # ssh
-      #- "10027:22"
-      #
-      # LiveCMS 信令服务
-      #
-      # sip
-      - "5060:5060/tcp"
-      - "5060:5060/udp"
-      # http
-      - "10000:10000"
-      # redis (internal)
-      - "26379:26379"
-      #
-      # LiveSMS 流媒体服务
-      #
-      # sip
-      - "5070:5070/tcp"
-      - "5070:5070/udp"
-      # http
-      - "10001:10001"
-      # rtmp live
-      - "11935:11935"
-      # rtp over tcp
-      #- "30000-40000:30000-40000/tcp"
-      - "30000-30009:30000-30009/tcp"
-      # rtp/rtcp over udp
-      #- "50000-60000:50000-60000/udp"
-      - "50000-50009:50000-50009/udp"
+    #ports:
+    #  # ssh
+    #  #- "10027:22"
+    #  #
+    #  # LiveCMS 信令服务
+    #  #
+    #  # sip
+    #  - "5060:5060/tcp"
+    #  - "5060:5060/udp"
+    #  # http
+    #  - "10000:10000"
+    #  # redis (internal)
+    #  - "26379:26379"
+    #  #
+    #  # LiveSMS 流媒体服务
+    #  #
+    #  # sip
+    #  - "5070:5070/tcp"
+    #  - "5070:5070/udp"
+    #  # http
+    #  - "10001:10001"
+    #  # rtmp live
+    #  - "11935:11935"
+    #  # rtp over tcp
+    #  #- "30000-40000:30000-40000/tcp"
+    #  - "30000-30009:30000-30009/tcp"
+    #  # rtp/rtcp over udp
+    #  #- "50000-60000:50000-60000/udp"
+    #  - "50000-50009:50000-50009/udp"
     networks:
-      public:
-        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_CMS0:-31}
-      srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_CMS0:-31}
+      #public:
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_CMS0:-31}
+      default:
+        ipv4_address: ${NETWORK_DEFAULT_PREFIX}.${IPADDR_SUFFIX_CMS0:-31}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -199,40 +199,40 @@ services:
     hostname: cms1
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
-    ports:
-      # ssh
-      #- "10028:22"
-      #
-      # LiveCMS 信令服务
-      #
-      # sip
-      - "5061:5061/tcp"
-      - "5061:5061/udp"
-      # http
-      - "10002:10002"
-      # redis (internal)
-      - "26380:26380"
-      #
-      # LiveSMS 流媒体服务
-      #
-      # sip
-      - "5071:5071/tcp"
-      - "5071:5071/udp"
-      # http
-      - "10003:10003"
-      # rtmp live
-      - "11936:11936"
-      # rtp over tcp
-      #- "30000-40000:30000-40000/tcp"
-      - "30010-30019:30010-30019/tcp"
-      # rtp/rtcp over udp
-      #- "50000-60000:50000-60000/udp"
-      - "50010-50019:50010-50019/udp"
+    #ports:
+    #  # ssh
+    #  #- "10028:22"
+    #  #
+    #  # LiveCMS 信令服务
+    #  #
+    #  # sip
+    #  - "5061:5061/tcp"
+    #  - "5061:5061/udp"
+    #  # http
+    #  - "10002:10002"
+    #  # redis (internal)
+    #  - "26380:26380"
+    #  #
+    #  # LiveSMS 流媒体服务
+    #  #
+    #  # sip
+    #  - "5071:5071/tcp"
+    #  - "5071:5071/udp"
+    #  # http
+    #  - "10003:10003"
+    #  # rtmp live
+    #  - "11936:11936"
+    #  # rtp over tcp
+    #  #- "30000-40000:30000-40000/tcp"
+    #  - "30010-30019:30010-30019/tcp"
+    #  # rtp/rtcp over udp
+    #  #- "50000-60000:50000-60000/udp"
+    #  - "50010-50019:50010-50019/udp"
     networks:
-      public:
-        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_CMS1:-32}
-      srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_CMS1:-32}
+      #public:
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_CMS1:-32}
+      default:
+        ipv4_address: ${NETWORK_DEFAULT_PREFIX}.${IPADDR_SUFFIX_CMS1:-32}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -242,40 +242,40 @@ services:
     hostname: cms2
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
-    ports:
-      # ssh
-      #- "10029:22"
-      #
-      # LiveCMS 信令服务
-      #
-      # sip
-      - "5062:5062/tcp"
-      - "5062:5062/udp"
-      # http
-      - "10004:10004"
-      # redis (internal)
-      - "26381:26381"
-      #
-      # LiveSMS 流媒体服务
-      #
-      # sip
-      - "5072:5072/tcp"
-      - "5072:5072/udp"
-      # http
-      - "10005:10005"
-      # rtmp live
-      - "11937:11937"
-      # rtp over tcp
-      #- "30000-40000:30000-40000/tcp"
-      - "30020-30029:30020-30029/tcp"
-      # rtp/rtcp over udp
-      #- "50000-60000:50000-60000/udp"
-      - "50020-50029:50020-50029/udp"
+    #ports:
+    #  # ssh
+    #  #- "10029:22"
+    #  #
+    #  # LiveCMS 信令服务
+    #  #
+    #  # sip
+    #  - "5062:5062/tcp"
+    #  - "5062:5062/udp"
+    #  # http
+    #  - "10004:10004"
+    #  # redis (internal)
+    #  - "26381:26381"
+    #  #
+    #  # LiveSMS 流媒体服务
+    #  #
+    #  # sip
+    #  - "5072:5072/tcp"
+    #  - "5072:5072/udp"
+    #  # http
+    #  - "10005:10005"
+    #  # rtmp live
+    #  - "11937:11937"
+    #  # rtp over tcp
+    #  #- "30000-40000:30000-40000/tcp"
+    #  - "30020-30029:30020-30029/tcp"
+    #  # rtp/rtcp over udp
+    #  #- "50000-60000:50000-60000/udp"
+    #  - "50020-50029:50020-50029/udp"
     networks:
-      public:
-        ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_CMS2:-33}
-      srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_CMS2:-33}
+      #public:
+        #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_CMS2:-33}
+      default:
+        ipv4_address: ${NETWORK_DEFAULT_PREFIX}.${IPADDR_SUFFIX_CMS2:-33}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -292,8 +292,8 @@ services:
     networks:
       #public:
         #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_AISRV01:-41}
-      srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_AISRV01:-41}
+      default:
+        ipv4_address: ${NETWORK_DEFAULT_PREFIX}.${IPADDR_SUFFIX_AISRV01:-41}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -310,8 +310,8 @@ services:
     networks:
       #public:
         #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_AISRV11:-42}
-      srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_AISRV11:-42}
+      default:
+        ipv4_address: ${NETWORK_DEFAULT_PREFIX}.${IPADDR_SUFFIX_AISRV11:-42}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -328,8 +328,8 @@ services:
     networks:
       #public:
         #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_AISRV21:-43}
-      srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_AISRV21:-43}
+      default:
+        ipv4_address: ${NETWORK_DEFAULT_PREFIX}.${IPADDR_SUFFIX_AISRV21:-43}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -346,8 +346,8 @@ services:
     networks:
       #public:
         #ipv4_address: ${NETWORK_PUBLIC_PREFIX}.${IPADDR_SUFFIX_FSROUTER01:-51}
-      srvdoom1:
-        ipv4_address: ${NETWORK_SRVDOOM1_PREFIX}.${IPADDR_SUFFIX_FSROUTER01:-51}
+      default:
+        ipv4_address: ${NETWORK_DEFAULT_PREFIX}.${IPADDR_SUFFIX_FSROUTER01:-51}
     volumes:
       - "vol-workspace:/workspace"
       - "vol-home:/home"
@@ -370,18 +370,10 @@ volumes:
 
 networks:
   default:
-    #external:
-    #  name: my-pre-existing-network
-  public:
-    ipam:
-      driver: default
-      config:
-        - subnet: "${NETWORK_PUBLIC_PREFIX}.0/24"
-  srvdoom1:
     driver: macvlan
     driver_opts:
-      parent: ${NETWORK_SRVDOOM1_MACVLAN_PARENT}
+      parent: ${NETWORK_DEFAULT_MACVLAN_PARENT}
     ipam:
       driver: default
       config:
-        - subnet: "${NETWORK_SRVDOOM1_PREFIX}.0/24"
+        - subnet: "${NETWORK_DEFAULT_PREFIX}.0/24"
