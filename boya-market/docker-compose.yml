@@ -7,7 +7,7 @@ version: '3'
 services:
   dev:
     # 开发环境 -- 虚拟服务
-    container_name: dev
+    container_name: ${COMPOSE_PROJECT_NAME}_dev
     hostname: dev
     restart: "no"
     build:
@@ -27,7 +27,7 @@ services:
 
   sip:
     # SIP开发环境 -- 虚拟服务
-    container_name: sip
+    container_name: ${COMPOSE_PROJECT_NAME}_sip
     hostname: sip
     restart: "no"
     build:
@@ -40,7 +40,7 @@ services:
 
   ssh:
     # 开发节点、跳转机
-    container_name: ssh
+    container_name: ${COMPOSE_PROJECT_NAME}_ssh
     hostname: ssh
     restart: "always"
     build:
@@ -68,7 +68,7 @@ services:
 
   device-ui:
     # web portal
-    container_name: device-ui
+    container_name: ${COMPOSE_PROJECT_NAME}_device-ui
     hostname: device-ui
     depends_on:
       - device-gw
@@ -90,7 +90,7 @@ services:
 
   device-gw:
     # web portal
-    container_name: device-gw
+    container_name: ${COMPOSE_PROJECT_NAME}_device-gw
     hostname: device-gw
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
@@ -110,7 +110,7 @@ services:
 
   market-ui:
     # web portal
-    container_name: market-ui
+    container_name: ${COMPOSE_PROJECT_NAME}_market-ui
     hostname: market-ui
     depends_on:
       - market-gw
@@ -132,7 +132,7 @@ services:
 
   market-gw:
     # web portal
-    container_name: market-gw
+    container_name: ${COMPOSE_PROJECT_NAME}_market-gw
     hostname: market-gw
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
@@ -152,7 +152,7 @@ services:
 
   cms0:
     # 顶层CMS
-    container_name: cms0
+    container_name: ${COMPOSE_PROJECT_NAME}_cms0
     hostname: cms0
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
@@ -195,7 +195,7 @@ services:
       - "vol-home:/home"
 
   cms1:
-    container_name: cms1
+    container_name: ${COMPOSE_PROJECT_NAME}_cms1
     hostname: cms1
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
@@ -238,7 +238,7 @@ services:
       - "vol-home:/home"
 
   cms2:
-    container_name: cms2
+    container_name: ${COMPOSE_PROJECT_NAME}_cms2
     hostname: cms2
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
@@ -282,7 +282,7 @@ services:
 
   aisrv01:
     # AI服务器
-    container_name: aisrv01
+    container_name: ${COMPOSE_PROJECT_NAME}_aisrv01
     hostname: aisrv01
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
@@ -300,7 +300,7 @@ services:
 
   aisrv11:
     # AI服务器
-    container_name: aisrv11
+    container_name: ${COMPOSE_PROJECT_NAME}_aisrv11
     hostname: aisrv11
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
@@ -318,7 +318,7 @@ services:
 
   aisrv21:
     # AI服务器
-    container_name: aisrv21
+    container_name: ${COMPOSE_PROJECT_NAME}_aisrv21
     hostname: aisrv21
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
@@ -336,7 +336,7 @@ services:
 
   fsrouter01:
     # 特征流队列服务器
-    container_name: fsrouter01
+    container_name: ${COMPOSE_PROJECT_NAME}_fsrouter01
     hostname: fsrouter01
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
