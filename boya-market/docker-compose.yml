@@ -376,4 +376,4 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: "${NETWORK_DEFAULT_PREFIX}.0/24"
+        - subnet: "${NETWORK_DEFAULT_PREFIX}.${NETWORK_DEFAULT_NETWORK:-0}/${NETWORK_DEFAULT_MASK:-24}"
