@@ -43,6 +43,7 @@ RUN true \
         net-tools \
         nmap \
         openssh-server \
+        patchelf \
         rsync \
         screen \
         sudo \
