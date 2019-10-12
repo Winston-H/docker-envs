@@ -71,7 +71,7 @@ RUN true \
  && true GO_INSTALLER_URL_PREFIX="https://dl.google.com/go/" \
  && GO_INSTALLER_URL_PREFIX="https://studygolang.com/dl/golang/" \
  && GO_INSTALLER="go${GO_VERSION}.linux-amd64.tar.gz" \
- && curl -fsSLO ${GO_INSTALLER_URL_PREFIX}${GO_INSTALLER} \
+ && curl -fSLO ${GO_INSTALLER_URL_PREFIX}${GO_INSTALLER} \
  && tar -xzf ${GO_INSTALLER} -C /usr/local/ \
  && rm -f ${GO_INSTALLER} \
  && echo 'export PATH=$PATH:/usr/local/go/bin' >/etc/profile.d/golang.sh \
@@ -88,7 +88,7 @@ RUN true \
  && export DEBIAN_FRONTEND="noninteractive" \
  && NODEJS_INSTALLER_URL_PREFIX="https://deb.nodesource.com/" \
  && NODEJS_INSTALLER="setup_${NODEJS_VERSION_MAJOR}.x" \
- && curl -fsSL ${NODEJS_INSTALLER_URL_PREFIX}${NODEJS_INSTALLER} | sudo -E bash - \
+ && curl -fSL ${NODEJS_INSTALLER_URL_PREFIX}${NODEJS_INSTALLER} | sudo -E bash - \
  && rm -f ${NODEJS_INSTALLER} \
  && apt-get install -y nodejs \
  && npm install --global \
@@ -110,7 +110,7 @@ RUN true \
  && true CONDA_INSTALLER_URL_PREFIX="https://repo.continuum.io/miniconda/" \
  && CONDA_INSTALLER_URL_PREFIX="https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/" \
  && CONDA_INSTALLER="Miniconda3-latest-Linux-x86_64.sh" \
- && curl -fsSLO ${CONDA_INSTALLER_URL_PREFIX}${CONDA_INSTALLER} \
+ && curl -fSLO ${CONDA_INSTALLER_URL_PREFIX}${CONDA_INSTALLER} \
  && conda_install_home="/opt/anaconda3" \
  && bash ${CONDA_INSTALLER} -b -p ${conda_install_home} \
  && rm -f ${CONDA_INSTALLER} \
