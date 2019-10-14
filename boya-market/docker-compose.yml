@@ -50,6 +50,9 @@ services:
         - DOCKER_REPO_PREFIX=${DOCKER_REPO_PREFIX}
         - IMG_TAG_dev=${IMG_TAG_dev}
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
+    #runtime:runc
+    environment:
+      - TZ=${TZ}
     ports:
       # ssh
       - "${SSH_PUBLISH_PORT_SSH:-10022}:22"
@@ -74,6 +77,9 @@ services:
       - device-gw
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
+    #runtime:runc
+    environment:
+      - TZ=${TZ}
     #ports:
       # ssh
       #- "10023:22"
@@ -94,6 +100,9 @@ services:
     hostname: device-gw
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
+    #runtime:runc
+    environment:
+      - TZ=${TZ}
     #ports:
       # ssh
       #- "10025:22"
@@ -116,6 +125,9 @@ services:
       - market-gw
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
+    #runtime:runc
+    environment:
+      - TZ=${TZ}
     #ports:
       # ssh
       #- "10024:22"
@@ -136,6 +148,9 @@ services:
     hostname: market-gw
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
+    #runtime:runc
+    environment:
+      - TZ=${TZ}
     #ports:
       # ssh
       #- "10026:22"
@@ -156,6 +171,9 @@ services:
     hostname: cms0
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
+    #runtime:runc
+    environment:
+      - TZ=${TZ}
     #ports:
     #  # ssh
     #  #- "10027:22"
@@ -199,6 +217,9 @@ services:
     hostname: cms1
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
+    #runtime:runc
+    environment:
+      - TZ=${TZ}
     #ports:
     #  # ssh
     #  #- "10028:22"
@@ -242,6 +263,9 @@ services:
     hostname: cms2
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
+    #runtime:runc
+    environment:
+      - TZ=${TZ}
     #ports:
     #  # ssh
     #  #- "10029:22"
@@ -286,6 +310,10 @@ services:
     hostname: aisrv01
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
+    #runtime:nvidia
+    environment:
+      - TZ=${TZ}
+      - NVIDIA_VISIBLE_DEVICES=${NVIDIA_VISIBLE_DEVICES_AISRV01:-all}
     #ports:
       # ssh
       #- "10030:22"
@@ -304,6 +332,10 @@ services:
     hostname: aisrv11
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
+    #runtime:nvidia
+    environment:
+      - TZ=${TZ}
+      - NVIDIA_VISIBLE_DEVICES=${NVIDIA_VISIBLE_DEVICES_AISRV01:-all}
     #ports:
       # ssh
       #- "10031:22"
@@ -322,6 +354,10 @@ services:
     hostname: aisrv21
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
+    #runtime:nvidia
+    environment:
+      - TZ=${TZ}
+      - NVIDIA_VISIBLE_DEVICES=${NVIDIA_VISIBLE_DEVICES_AISRV01:-all}
     #ports:
       # ssh
       #- "10032:22"
@@ -340,6 +376,9 @@ services:
     hostname: fsrouter01
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
+    #runtime:nvidia
+    environment:
+      - TZ=${TZ}
     #ports:
       # ssh
       #- "10033:22"

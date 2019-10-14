@@ -41,6 +41,7 @@ RUN true \
         locales-all \
         mosh \
         net-tools \
+        nginx \
         nmap \
         openssh-server \
         patchelf \
@@ -49,6 +50,7 @@ RUN true \
         sudo \
         tcpdump \
         tmux \
+        tzdata \
         vim \
         wget \
  && echo "Install Darwin sys deps" \
@@ -96,6 +98,7 @@ RUN true \
         rimraf \
         cross-env \
         cnpm \
+ && apt-get clean \
  && true
 
 
@@ -115,6 +118,7 @@ RUN true \
  && bash ${CONDA_INSTALLER} -b -p ${conda_install_home} \
  && rm -f ${CONDA_INSTALLER} \
  && ln -s ${conda_install_home}/etc/profile.d/conda.sh /etc/profile.d/ \
+ && apt-get clean \
  && true
 
 
