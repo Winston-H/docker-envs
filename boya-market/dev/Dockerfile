@@ -50,6 +50,7 @@ RUN true \
         sudo \
         tcpdump \
         tmux \
+        tzdata \
         vim \
         wget \
  && echo "Install Darwin sys deps" \
