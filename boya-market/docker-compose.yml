@@ -51,6 +51,8 @@ services:
         - IMG_TAG_dev=${IMG_TAG_dev}
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     #runtime:runc
+    environment:
+      - TZ=${TZ}
     ports:
       # ssh
       - "${SSH_PUBLISH_PORT_SSH:-10022}:22"
@@ -76,6 +78,8 @@ services:
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     #runtime:runc
+    environment:
+      - TZ=${TZ}
     #ports:
       # ssh
       #- "10023:22"
@@ -97,6 +101,8 @@ services:
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     #runtime:runc
+    environment:
+      - TZ=${TZ}
     #ports:
       # ssh
       #- "10025:22"
@@ -120,6 +126,8 @@ services:
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     #runtime:runc
+    environment:
+      - TZ=${TZ}
     #ports:
       # ssh
       #- "10024:22"
@@ -141,6 +149,8 @@ services:
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     #runtime:runc
+    environment:
+      - TZ=${TZ}
     #ports:
       # ssh
       #- "10026:22"
@@ -162,6 +172,8 @@ services:
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
     #runtime:runc
+    environment:
+      - TZ=${TZ}
     #ports:
     #  # ssh
     #  #- "10027:22"
@@ -206,6 +218,8 @@ services:
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
     #runtime:runc
+    environment:
+      - TZ=${TZ}
     #ports:
     #  # ssh
     #  #- "10028:22"
@@ -250,6 +264,8 @@ services:
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}sip:${IMG_TAG_sip}"
     #runtime:runc
+    environment:
+      - TZ=${TZ}
     #ports:
     #  # ssh
     #  #- "10029:22"
@@ -296,6 +312,7 @@ services:
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     #runtime:nvidia
     environment:
+      - TZ=${TZ}
       - NVIDIA_VISIBLE_DEVICES=${NVIDIA_VISIBLE_DEVICES_AISRV01:-all}
     #ports:
       # ssh
@@ -317,6 +334,7 @@ services:
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     #runtime:nvidia
     environment:
+      - TZ=${TZ}
       - NVIDIA_VISIBLE_DEVICES=${NVIDIA_VISIBLE_DEVICES_AISRV01:-all}
     #ports:
       # ssh
@@ -338,6 +356,7 @@ services:
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     #runtime:nvidia
     environment:
+      - TZ=${TZ}
       - NVIDIA_VISIBLE_DEVICES=${NVIDIA_VISIBLE_DEVICES_AISRV01:-all}
     #ports:
       # ssh
@@ -357,6 +376,9 @@ services:
     hostname: fsrouter01
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
+    #runtime:nvidia
+    environment:
+      - TZ=${TZ}
     #ports:
       # ssh
       #- "10033:22"
