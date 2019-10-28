@@ -95,9 +95,10 @@ RUN true \
  && apt-get install -y nodejs \
  && npm install --global \
         apidoc \
-        rimraf \
-        cross-env \
         cnpm \
+        cross-env \
+        mkdirp \
+        rimraf \
  && apt-get clean \
  && true
 
