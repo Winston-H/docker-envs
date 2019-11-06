@@ -27,6 +27,7 @@ RUN true \
  && sed -i -e 's,//\(archive.ubuntu.com\),//cn.\1,g' /etc/apt/sources.list \
  && apt-get update \
  && echo "Install dev tools and libs" \
+ && echo "Asia/Shanghai" > /etc/timezone \
  && apt-get install -y \
         apt-utils \
         build-essential \
