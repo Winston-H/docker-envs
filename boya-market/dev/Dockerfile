@@ -32,6 +32,7 @@ RUN true \
         apt-utils \
         build-essential \
         bzip2 \
+        cmake \
         curl \
         dnsutils \
         git \
@@ -44,6 +45,7 @@ RUN true \
         net-tools \
         nginx \
         nmap \
+        nmon \
         openssh-server \
         patchelf \
         rsync \
