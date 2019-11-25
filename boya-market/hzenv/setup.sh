@@ -36,23 +36,32 @@ USER_HOME=`getent passwd $USER | cut -d: -f6`
 #
 # 创建.ssh无密码认证
 #
-if [ ! -d $USER_HOME/.ssh ]; then
-    sudo -u $USER -n bash -c "mkdir $USER_HOME/.ssh && chmod go-rwx $USER_HOME/.ssh"
-fi && \
-# 添加公钥1
-if ! grep -sq buBwaQV4qa1X5IzkST0lEFyejqn $USER_HOME/.ssh/authorized_keys; then
-    {
-        # $USER@aliceworld
-        echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDUSgSae50ZzJtBexFMDloqvrYxR2uRMAV82lEFN0Ff8dpEieSHGscfIxIXO1uxBg/+X66xQszb8kvkekadArMXDlZxLc1jT5E2tItJocaZODci+xnWR8XfdeTfSjJ+7TNyY22uRX3hOaT/ACTnKQ4grWGzlf+D29oTsXKefIKkEziNF9kye/k3TBmntetDCAcYDbuBwaQV4qa1X5IzkST0lEFyejqngj8iu1c8Sf4JbpCTgm4XkteVsly2ds9cvZEp5JUtwOri2BMue9gkz9Hm/nTgsV5OvxD8bxyNGnkAlw9FVxrBTeW8N2EY1DIcGpaD7vDaeylmu6Pt47Aa59VJfbaP3qw0v7x+auITkfA0UBC+02Rb33TbZRu1mYHUk0qPySeCkrBMeQlXhu7TGcdSgzsYkJWWxlYvy+Dmn/VRMGl/Z18kOftsxX34fp5Dd83/mux1zTLJfjRHznqDLhWlGkLNIbQpjAtHCThUuY1tJ1o3+cSUd2+zoWrsTBa93HNddi45Y/OFqv3udHVkwaZFSVlanej2pTm5VemtsNjQkR8vav2ntgsTqLrBJOThgs5P5yQynCmsR9BdaeFmxz4U7ZjkUX/ufeMvLx81pLOrMKBIlB/kp0VodYVq20dRYDXif3JapBlGJJgFihNkU7z7s7CiTKZkIGr+OH1mXO1MTQ== $USER@aliceneworld/id_rsa"
-   } >> $USER_HOME/.ssh/authorized_keys
-fi && \
-# 添加公钥2
-if ! grep -sq sNnFc8Wm9VoEuAwv4FQE $USER_HOME/.ssh/authorized_keys; then
-    {
-        # $USER@bladesk1
-        echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrMpLIRC338AkTChoskYLPjjN/LikxSdutXrgsNnFc8Wm9VoEuAwv4FQE6Rr/uQUIsJPjgFgRveYQDUbRfZpSsKRgz1MrP/eYOSX05oJP0fOX9HNqZzPbQAK2tu8DzCOEpAhqOThRMPnKxWH3JXSNf//MrlGaq6GWr8s/gUJV8r2J3ttCosmexUnIWOx4lWmdBwPBVixWqd+otWnoQi/YqSv2JLlbz/V6PzWhsDedLYPF4iZq49Dp5g+JcWLi98RiwJ4F3PbaUVWEOWrfy73IHmSBLnliH5n+Un8XxJpMpAnRnxhF14gqGs/ZeaBJVH8xNkaIWvgnukNTT6sVAvrLB $USER@blapad2"
-   } >> $USER_HOME/.ssh/authorized_keys
-fi && \
+for _USER in root $USER boya_market boya_sip
+do
+    _USER_HOME=`getent passwd $_USER | cut -d: -f6`
+    if [ ! -d $_USER_HOME/.ssh ]; then
+        sudo -u $_USER -n bash -c "mkdir $_USER_HOME/.ssh && chmod go-rwx $_USER_HOME/.ssh"
+    fi && \
+    # 添加公钥1
+    if ! grep -sq buBwaQV4qa1X5IzkST0lEFyejqn $_USER_HOME/.ssh/authorized_keys; then
+        {
+            # $USER@aliceworld
+            echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDUSgSae50ZzJtBexFMDloqvrYxR2uRMAV82lEFN0Ff8dpEieSHGscfIxIXO1uxBg/+X66xQszb8kvkekadArMXDlZxLc1jT5E2tItJocaZODci+xnWR8XfdeTfSjJ+7TNyY22uRX3hOaT/ACTnKQ4grWGzlf+D29oTsXKefIKkEziNF9kye/k3TBmntetDCAcYDbuBwaQV4qa1X5IzkST0lEFyejqngj8iu1c8Sf4JbpCTgm4XkteVsly2ds9cvZEp5JUtwOri2BMue9gkz9Hm/nTgsV5OvxD8bxyNGnkAlw9FVxrBTeW8N2EY1DIcGpaD7vDaeylmu6Pt47Aa59VJfbaP3qw0v7x+auITkfA0UBC+02Rb33TbZRu1mYHUk0qPySeCkrBMeQlXhu7TGcdSgzsYkJWWxlYvy+Dmn/VRMGl/Z18kOftsxX34fp5Dd83/mux1zTLJfjRHznqDLhWlGkLNIbQpjAtHCThUuY1tJ1o3+cSUd2+zoWrsTBa93HNddi45Y/OFqv3udHVkwaZFSVlanej2pTm5VemtsNjQkR8vav2ntgsTqLrBJOThgs5P5yQynCmsR9BdaeFmxz4U7ZjkUX/ufeMvLx81pLOrMKBIlB/kp0VodYVq20dRYDXif3JapBlGJJgFihNkU7z7s7CiTKZkIGr+OH1mXO1MTQ== $USER@aliceneworld/id_rsa"
+        } >> $_USER_HOME/.ssh/authorized_keys
+    fi && \
+    # 添加公钥2
+    if ! grep -sq sNnFc8Wm9VoEuAwv4FQE $_USER_HOME/.ssh/authorized_keys; then
+        {
+            # $USER@bladesk1
+            echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrMpLIRC338AkTChoskYLPjjN/LikxSdutXrgsNnFc8Wm9VoEuAwv4FQE6Rr/uQUIsJPjgFgRveYQDUbRfZpSsKRgz1MrP/eYOSX05oJP0fOX9HNqZzPbQAK2tu8DzCOEpAhqOThRMPnKxWH3JXSNf//MrlGaq6GWr8s/gUJV8r2J3ttCosmexUnIWOx4lWmdBwPBVixWqd+otWnoQi/YqSv2JLlbz/V6PzWhsDedLYPF4iZq49Dp5g+JcWLi98RiwJ4F3PbaUVWEOWrfy73IHmSBLnliH5n+Un8XxJpMpAnRnxhF14gqGs/ZeaBJVH8xNkaIWvgnukNTT6sVAvrLB $USER@blapad2"
+        } >> $_USER_HOME/.ssh/authorized_keys
+    fi
+
+    if [ $? -ne 0 ]; then
+	false
+	break
+    fi
+done && \
 #
 # 设置sudo访问
 #
