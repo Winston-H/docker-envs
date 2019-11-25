@@ -150,6 +150,19 @@ fi && \
 ls -ld $HDD_ROOT/home/boya_sip && \
 sudo -u boya_sip -n ls -ld $HDD_ROOT/home/boya_sip && \
 #
+# 设置conda
+#
+for _USER in $USER boya_market boya_sip
+do
+    sudo -u $_USER -n -i bash -c "conda config --append envs_dirs $SHARE_ROOT/.conda/envs" &&
+    sudo -u $_USER -n -i bash -c "conda config --append pkgs_dirs $SHARE_ROOT/.conda/pkgs"
+    if [ $? -ne 0 ]; then
+	false
+	break
+    fi
+    sudo -u $_USER -n -i cat .condarc | sed -e 's/^/[conda rc] >> /g' >&1
+done && \
+#
 # 尾部
 #
 true
