@@ -1,0 +1,40 @@
+host hzubt1
+    HostName 218.75.73.186
+    Port 10104
+    StrictHostKeyChecking off
+host hzubt2
+    HostName 218.75.73.186
+    Port 10105
+    StrictHostKeyChecking off
+host hzubt3
+    HostName 218.75.73.186
+    Port 10106
+    StrictHostKeyChecking off
+host hzgpu01
+    HostName 218.75.73.186
+    Port 20010
+    StrictHostKeyChecking off
+host hzgpu02
+    HostName 218.75.73.186
+    Port 20011
+    StrictHostKeyChecking off
+host hzcpu01
+    HostName 218.75.73.186
+    Port 20012
+    StrictHostKeyChecking off
+host hzcpu02
+    HostName 218.75.73.186
+    Port 20013
+    StrictHostKeyChecking off
+host hzcpu03
+    HostName 218.75.73.186
+    Port 20014
+    StrictHostKeyChecking off
+host hzcpu04
+    HostName 218.75.73.186
+    Port 20015
+    StrictHostKeyChecking off
+host hzcpu05
+    HostName 218.75.73.186
+    Port 20016
+    StrictHostKeyChecking off
