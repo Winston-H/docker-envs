@@ -11,7 +11,7 @@ services:
     hostname: dev
     restart: "no"
     build:
-      context: ./dev
+      context: ${BUILD_HOME}/dev
       dockerfile: Dockerfile
       args:
         - PASSWORD_root=${PASSWORD_root}
@@ -31,7 +31,7 @@ services:
     hostname: sip
     restart: "no"
     build:
-      context: ./sip
+      context: ${BUILD_HOME}/sip
       dockerfile: Dockerfile
       args:
         - DOCKER_REPO_PREFIX=${DOCKER_REPO_PREFIX}
@@ -44,7 +44,7 @@ services:
     hostname: ssh
     restart: "always"
     build:
-      context: ./ssh
+      context: ${BUILD_HOME}/ssh
       dockerfile: Dockerfile
       args:
         - DOCKER_REPO_PREFIX=${DOCKER_REPO_PREFIX}
@@ -307,7 +307,7 @@ services:
   aisrv01:
     # AI服务器
     container_name: ${COMPOSE_PROJECT_NAME}_aisrv01
-    hostname: aisrv01
+    hostname: aisrv02
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     #runtime:nvidia
@@ -329,7 +329,7 @@ services:
   aisrv11:
     # AI服务器
     container_name: ${COMPOSE_PROJECT_NAME}_aisrv11
-    hostname: aisrv11
+    hostname: aisrv12
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     #runtime:nvidia
@@ -351,7 +351,7 @@ services:
   aisrv21:
     # AI服务器
     container_name: ${COMPOSE_PROJECT_NAME}_aisrv21
-    hostname: aisrv21
+    hostname: aisrv22
     restart: "always"
     image: "${DOCKER_REPO_PREFIX}ssh:${IMG_TAG_ssh}"
     #runtime:nvidia
