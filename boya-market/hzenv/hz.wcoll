@@ -1,2 +1,4 @@
-hzgpu[01-2]
-hzcpu[01-5]
+#hzgpu[01-2]
+#hzcpu[01-5]
+hzvmcpu[01-3]
+hzvmgpu[01-3]
