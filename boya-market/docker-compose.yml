@@ -335,7 +335,7 @@ services:
     #runtime:nvidia
     environment:
       - TZ=${TZ}
-      - NVIDIA_VISIBLE_DEVICES=${NVIDIA_VISIBLE_DEVICES_AISRV01:-all}
+      - NVIDIA_VISIBLE_DEVICES=${NVIDIA_VISIBLE_DEVICES_AISRV11:-all}
     #ports:
       # ssh
       #- "10031:22"
@@ -357,7 +357,7 @@ services:
     #runtime:nvidia
     environment:
       - TZ=${TZ}
-      - NVIDIA_VISIBLE_DEVICES=${NVIDIA_VISIBLE_DEVICES_AISRV01:-all}
+      - NVIDIA_VISIBLE_DEVICES=${NVIDIA_VISIBLE_DEVICES_AISRV21:-all}
     #ports:
       # ssh
       #- "10032:22"
@@ -379,6 +379,7 @@ services:
     #runtime:nvidia
     environment:
       - TZ=${TZ}
+      - NVIDIA_VISIBLE_DEVICES=${NVIDIA_VISIBLE_DEVICES_FSROUTER01:-all}
     #ports:
       # ssh
       #- "10033:22"
