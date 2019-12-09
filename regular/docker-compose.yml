@@ -10,12 +10,40 @@ services:
     volumes:
       - /home/boya_market:/home/boya_market
 
+  slurm_prj_node1:
+    container_name: slurm_prj_node1
+    hostname: node1
+    restart: always
+    image: fuzhiwen/market-ssh:latest
+    environment:
+      - TZ=Asia/Shanghai
+      - NVIDIA_VISIBLE_DEVICES=
+    ports:
+      - "10023:22/tcp"
+    volumes:
+      - /workspace/slurm_prj/home:/home
+      - /workspace/slurm_prj/workspace:/workspace
+
+  slurm_prj_node2:
+    container_name: slurm_prj_node2
+    hostname: node2
+    restart: always
+    image: fuzhiwen/market-ssh:latest
+    environment:
+      - TZ=Asia/Shanghai
+      - NVIDIA_VISIBLE_DEVICES=
+    #ports:
+    #  - "10023:22/tcp"
+    volumes:
+      - /workspace/slurm_prj/home:/home
+      - /workspace/slurm_prj/workspace:/workspace
+
   swagger-ui:
     container_name: swagger-ui
     restart: always
     image: swaggerapi/swagger-ui:latest
     ports:
-      - "18080:8080"
+      - "18081:8080"
     environment:
       - BASE_URL=/swagger
 
@@ -24,6 +52,6 @@ services:
     restart: always
     image: swaggerapi/swagger-editor:latest
     ports:
-      - "18080:8080"
+      - "18081:8080"
     environment:
       - BASE_URL=/swagger
