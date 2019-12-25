@@ -25,6 +25,26 @@ services:
         - PASSWORD_boya_sip=${PASSWORD_boya_sip}
     image: "${DOCKER_REPO_PREFIX}dev:${IMG_TAG_dev}"
 
+  dev_arm64:
+    # 开发环境 -- 虚拟服务
+    container_name: ${COMPOSE_PROJECT_NAME}_dev_arm64
+    hostname: dev_arm64
+    restart: "no"
+    build:
+      context: ${BUILD_HOME}/dev
+      dockerfile: Dockerfile.arm64
+      args:
+        - PASSWORD_root=${PASSWORD_root}
+        - SSH_KEY_root=${SSH_KEY_root}
+        - GID_boya=${GID_boya}
+        - GID_boya_market=${GID_boya_market}
+        - GID_boya_sip=${GID_boya_sip}
+        - UID_boya_market=${UID_boya_market}
+        - UID_boya_sip=${UID_boya_sip}
+        - PASSWORD_boya_market=${PASSWORD_boya_market}
+        - PASSWORD_boya_sip=${PASSWORD_boya_sip}
+    image: "${DOCKER_REPO_PREFIX}dev_arm64:${IMG_TAG_dev}"
+
   sip:
     # SIP开发环境 -- 虚拟服务
     container_name: ${COMPOSE_PROJECT_NAME}_sip
