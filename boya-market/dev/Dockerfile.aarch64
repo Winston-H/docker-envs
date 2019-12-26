@@ -64,6 +64,7 @@ RUN if true; then true \
         ipython3 \
         python3 \
         python3-dev \
+        python3-lxml \
         python3-numpy \
         python3-virtualenv \
         virtualenv \
@@ -88,6 +89,8 @@ RUN if true; then true \
         libffi-dev \
         libgl1-mesa-glx \
         libssl-dev \
+        libxml2 \
+        libxml2-dev \
         mongodb \
         munge \
         nginx \
