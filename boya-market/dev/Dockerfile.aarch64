@@ -80,7 +80,7 @@ RUN if true; then true \
         libjpeg-dev \
         libopenexr-dev \
         libpng-dev \
-        libswscale-dev
+        libswscale-dev \
         libtiff-dev \
         libwebp-dev \
  && echo "Install Platform deps" \
@@ -96,6 +96,8 @@ RUN if true; then true \
         redis-server \
         redis-tools \
         slurm-wlm \
+        zlib1g \
+        zlib1g-dev \
  && apt-get clean \
  && true; fi
 
