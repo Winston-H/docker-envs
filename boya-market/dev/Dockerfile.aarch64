@@ -35,31 +35,21 @@ RUN if true; then true \
         ccache \
         cmake \
         curl \
-        cython3 \
         dnsutils \
         git \
         iproute2 \
         iputils-ping \
         iputils-tracepath \
-        ipython3 \
         locales \
         locales-all \
-        mongodb \
         mosh \
         net-tools \
-        nginx \
         nmap \
         nmon \
         openssh-server \
         p7zip \
         p7zip-full \
         patchelf \
-        python3 \
-        python3-virtualenv \
-        rabbitmq-server \
-        redis-sentinel \
-        redis-server \
-        redis-tools \
         rsync \
         screen \
         sudo \
@@ -70,9 +60,24 @@ RUN if true; then true \
         wget \
  && echo "Install Darwin sys deps" \
  && apt-get install -y \
+        cython3 \
+        ipython3 \
+        libffi-dev \
+        libssl-dev \
         libgl1-mesa-glx \
+        mongodb \
         munge \
+        nginx \
+        python3 \
+        python3-virtualenv \
+        rabbitmq-server \
+        redis-sentinel \
+        redis-server \
+        redis-tools \
         slurm-wlm \
+        virtualenv \
+        virtualenv-clone \
+        virtualenvwrapper \
  && apt-get clean \
  && true; fi
 
@@ -146,7 +151,7 @@ RUN true \
  && if [ -n "${SSH_KEY_root}" ]; then \
         mkdir -p ~root/.ssh \
      && chmod go-rwx ~root/.ssh \
-     && echo "${SSH_KEY_root}" | sed -e 's/^"//g' -e 's/"$//g' >> ~root/.ssh/authorized_keys \
+     && echo "${SSH_KEY_root}" | sed -e 's/^"//g' -e 's/"$//g' -e 's/  *ssh-/\nssh-/g' >> ~root/.ssh/authorized_keys \
      && true; \
     fi \
  && sed -i -e 's/^#\? *\(PermitRootLogin\) .*$/\1 prohibit-password/g' /etc/ssh/sshd_config \

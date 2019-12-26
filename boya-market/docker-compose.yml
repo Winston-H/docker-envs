@@ -36,6 +36,7 @@ services:
       args:
         - DOCKER_REPO_PREFIX=${DOCKER_REPO_PREFIX}
         - IMG_TAG_ssh=${IMG_TAG_ssh}
+        - ARCH_IMG_SUFFIX=${ARCH_IMG_SUFFIX:-}
     image: "${DOCKER_REPO_PREFIX}sip${ARCH_IMG_SUFFIX:-}:${IMG_TAG_sip}"
 
   ssh:
@@ -49,6 +50,7 @@ services:
       args:
         - DOCKER_REPO_PREFIX=${DOCKER_REPO_PREFIX}
         - IMG_TAG_dev=${IMG_TAG_dev}
+        - ARCH_IMG_SUFFIX=${ARCH_IMG_SUFFIX:-}
     image: "${DOCKER_REPO_PREFIX}ssh${ARCH_IMG_SUFFIX:-}:${IMG_TAG_ssh}"
     #runtime:runc
     environment:
